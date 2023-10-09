@@ -1,14 +1,48 @@
 #include <iostream>
 #include <fstream>
-//#include "ArgumentManager.h"
+#include "dlink.h"
+#include "ArgumentManager.h"
 
 using namespace std;
 
+void insertionSort(dlink list) {
 
-int main(char* argc[], int argv) {
+	return;
+}
+
+void selectionSort(dlink list) {
+
+	return;
+}
 
 
-	cout << "hey" << endl;
+int main(int argc, char* argv[]) {
+
+	ArgumentManager am(argc, argv);
+	ifstream input(am.get("input"));
+	ofstream output(am.get("output"));
+
+
+	ifstream input("input1.txt");
+	ofstream output("output1.txt");
+
+
+	dlink list;
+	string line;
+	while (getline(input, line, ' ')) {
+		list.add
+
+
+	}
+
+
+
+	if (line == "insertion") {
+		insertionSort(list);
+	}
+	else if (line == "selection") {
+		selectionSort(list);
+	}
 
 
 	return 0;
