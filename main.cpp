@@ -5,44 +5,40 @@
 
 using namespace std;
 
-void insertionSort(dlink list) {
-
-	return;
-}
-
-void selectionSort(dlink list) {
-
-	return;
-}
-
-
 int main(int argc, char* argv[]) {
 
-	ArgumentManager am(argc, argv);
+	/*ArgumentManager am(argc, argv);
 	ifstream input(am.get("input"));
-	ofstream output(am.get("output"));
+	ofstream output(am.get("output"));*/
 
 
-	ifstream input("input1.txt");
+	ifstream input("input3.txt");
 	ofstream output("output1.txt");
-
 
 	dlink list;
 	string line;
-	while (getline(input, line, ' ')) {
-		list.add
-
-
+	getline(input, line);
+	stringstream ss(line);
+	int num;
+	while (ss >> num) {
+		list.add(num);
 	}
-
-
-
-	if (line == "insertion") {
-		insertionSort(list);
+	getline(input, line);
+	list.print();
+	cout << endl;
+	if (line == "Insertion") {
+		cout << "using insertion sort..." << endl;
+		list.insertionSort();
 	}
-	else if (line == "selection") {
-		selectionSort(list);
+	else if (line == "Selection") {
+		cout << "using selection sort..." << endl;
+		list.selectionSort();
 	}
+	cout << "The final results are: " << endl;
+	list.print(/*&output*/);
+
+	input.close();
+	output.close();
 
 
 	return 0;
