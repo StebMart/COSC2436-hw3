@@ -7,13 +7,13 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 
-	/*ArgumentManager am(argc, argv);
+	ArgumentManager am(argc, argv);
 	ifstream input(am.get("input"));
-	ofstream output(am.get("output"));*/
+	ofstream output(am.get("output"));
 
 
-	ifstream input("input3.txt");
-	ofstream output("output1.txt");
+	/*ifstream input("input3.txt");
+	ofstream output("output1.txt");*/
 
 	dlink list;
 	string line;

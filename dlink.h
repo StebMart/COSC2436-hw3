@@ -13,14 +13,17 @@ struct node {
 
 class dlink {
 public:
-	dlink() { head == nullptr; }
+	dlink() { head = nullptr; }
 	void add(int num); // used to add all variables into list 
 	void insertionSort(); // sorts the list using insertion sort
 	void selectionSort(); // sorts the list using selection sort
 	void print(/*ofstream* output*/);
+	//void swap(node* x, node* y);
 private: 
 	node* head = nullptr;
 	int n = 0;
+	void swap(node* x, node* y);
+	
 };
 
 void dlink::add(int num) {
@@ -39,34 +42,75 @@ void dlink::add(int num) {
 	return;
 }
 
+void dlink::swap(node* x, node* y) {
+	if (head == nullptr || head->next == nullptr || x == y)
+		return;
+	if (x == head)
+		head = y;
+	else if (y == head)
+		head = x;
+
+
+	node* temp;
+	temp = x->next;
+	x->next = y->next;
+	y->next = temp;
+
+	if (x->next != nullptr)
+		x->next->prev = x;
+	if (y->next != nullptr)
+		y->next->prev = y;
+
+	temp = x->prev;
+	x->prev = y->prev;
+	y->prev = temp;
+
+	if (x->prev != nullptr)
+		x->prev->next = x;
+	if (y->prev != nullptr)
+		y->prev->next = y;
+	return;
+}
+
 void dlink::insertionSort() {
 	node* cu = head; 
 	node* comp;
-	node* key;
 
 	if (cu == nullptr || cu->next == nullptr)
 		return;
 	cu = cu->next;
 	
-	while (cu != nullptr) {	
-		print();
-		cout << "cu is: " << cu->num << endl;
+	for (int i = 0; i < n; i++) {	
+		cu = head;
+		for (int j = 0; j < i; j++)
+			cu = cu->next;
 		comp = cu->prev;
-		cout << comp->num << " " << cu->num << endl;
 		while ((comp != nullptr) && (comp->num > cu->num)) {
-			cout << "hey";
-			comp->next = comp;
-			if (comp->prev == nullptr)
+			swap(comp, cu);
+			if (cu->prev == nullptr)
 				break;
-			comp = comp->prev;
+			comp = cu->prev;
 		}
-		comp->next = cu;
-		cu = cu->next;
 	}
 	return;
 }
 
 void dlink::selectionSort() {
+	node* cu = head;
+	node* min;
+	node* i = head;
+	while (i != nullptr) {
+		cu = i;
+		min = i;
+		while (cu != nullptr) {
+			if (min->num >= cu->num) {
+				min = cu;
+			}
+			cu = cu->next;
+		} 
+		swap(min, i);
+		i = min->next;
+	}
 
 
 	return;
