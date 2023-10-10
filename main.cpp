@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 
 
 	/*ifstream input("input3.txt");
-	ofstream output("output1.txt");*/
+	ofstream output("output.txt");*/
 
 	dlink list;
 	string line;
@@ -24,18 +24,14 @@ int main(int argc, char* argv[]) {
 		list.add(num);
 	}
 	getline(input, line);
-	list.print();
-	cout << endl;
 	if (line == "Insertion") {
-		cout << "using insertion sort..." << endl;
 		list.insertionSort();
 	}
 	else if (line == "Selection") {
-		cout << "using selection sort..." << endl;
 		list.selectionSort();
 	}
-	cout << "The final results are: " << endl;
-	list.print(/*&output*/);
+	ofstream* ptr = &output;
+	list.print(ptr);
 
 	input.close();
 	output.close();

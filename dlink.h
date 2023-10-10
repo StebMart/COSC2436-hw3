@@ -17,7 +17,7 @@ public:
 	void add(int num); // used to add all variables into list 
 	void insertionSort(); // sorts the list using insertion sort
 	void selectionSort(); // sorts the list using selection sort
-	void print(/*ofstream* output*/);
+	void print(ofstream* ptr);
 	//void swap(node* x, node* y);
 private: 
 	node* head = nullptr;
@@ -116,10 +116,10 @@ void dlink::selectionSort() {
 	return;
 }
 
-void dlink::print(/*ofstream* output*/) {
+void dlink::print(ofstream* ptr) {
 	node* cu = head;
 	while (cu != nullptr) {
-		cout << cu->num << " ";
+		*ptr << cu->num << " ";
 		cu = cu->next;
 	}
 	return;
