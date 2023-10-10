@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
 	ofstream output(am.get("output"));
 
 
-	/*ifstream input("input3.txt");
+	/*ifstream input("input1.txt");
 	ofstream output("output.txt");*/
 
 	dlink list;
@@ -20,18 +20,21 @@ int main(int argc, char* argv[]) {
 	getline(input, line);
 	stringstream ss(line);
 	int num;
+	ofstream* ptr = &output;
+
 	while (ss >> num) {
 		list.add(num);
 	}
 	getline(input, line);
 	if (line == "Insertion") {
-		list.insertionSort();
+		list.insertionSort(ptr);
 	}
 	else if (line == "Selection") {
-		list.selectionSort();
+		list.selectionSort(ptr);
 	}
-	ofstream* ptr = &output;
-	list.print(ptr);
+	else {
+		output << "Input is invalid.";
+	}
 
 	input.close();
 	output.close();

@@ -15,8 +15,8 @@ class dlink {
 public:
 	dlink() { head = nullptr; }
 	void add(int num); // used to add all variables into list 
-	void insertionSort(); // sorts the list using insertion sort
-	void selectionSort(); // sorts the list using selection sort
+	void insertionSort(ofstream* ptr); // sorts the list using insertion sort
+	void selectionSort(ofstream* ptr); // sorts the list using selection sort
 	void print(ofstream* ptr);
 	//void swap(node* x, node* y);
 private: 
@@ -72,7 +72,7 @@ void dlink::swap(node* x, node* y) {
 	return;
 }
 
-void dlink::insertionSort() {
+void dlink::insertionSort(ofstream* ptr) {
 	node* cu = head; 
 	node* comp;
 
@@ -80,7 +80,7 @@ void dlink::insertionSort() {
 		return;
 	cu = cu->next;
 	
-	for (int i = 0; i < n; i++) {	
+	for (int i = 1; i < n; i++) {	
 		cu = head;
 		for (int j = 0; j < i; j++)
 			cu = cu->next;
@@ -91,15 +91,16 @@ void dlink::insertionSort() {
 				break;
 			comp = cu->prev;
 		}
+		print(ptr);
 	}
 	return;
 }
 
-void dlink::selectionSort() {
+void dlink::selectionSort(ofstream* ptr) {
 	node* cu = head;
 	node* min;
 	node* i = head;
-	while (i != nullptr) {
+	while (i->next != nullptr) {
 		cu = i;
 		min = i;
 		while (cu != nullptr) {
@@ -110,6 +111,7 @@ void dlink::selectionSort() {
 		} 
 		swap(min, i);
 		i = min->next;
+		print(ptr);
 	}
 
 
@@ -118,10 +120,13 @@ void dlink::selectionSort() {
 
 void dlink::print(ofstream* ptr) {
 	node* cu = head;
+	*ptr << "[" << cu->num;
+	cu = cu->next;
 	while (cu != nullptr) {
-		*ptr << cu->num << " ";
+		*ptr << "," << cu->num;
 		cu = cu->next;
 	}
+	*ptr << "]\n";
 	return;
 }
 #endif
